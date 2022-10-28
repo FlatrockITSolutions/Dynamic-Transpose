@@ -1,0 +1,18 @@
+Sub test()
+    Dim temp As String
+    Dim rowCount As Integer
+    Dim OutRow As Integer
+    OutRow = 0
+    For Each i In Worksheets("Sheet2").Range("A1:A68")
+        rowCount = 1
+        OutRow = OutRow + 1
+        temp = ""
+        For Each j In Worksheets("Sheet1").Range("A1:A1189")
+            If InStr(j.Value, i.Value) Then
+                temp = temp + CStr(Worksheets("Sheet1").Cells(rowCount, 4).Value) + ", "
+            End If
+            rowCount = rowCount + 1
+        Next
+        Worksheets("Sheet2").Cells(OutRow, 2).Value = temp
+    Next
+End Sub
